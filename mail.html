@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mass_mail_sender</title>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="mail.css">
+</head>
+<body>
+
+    <nav id="nav">
+        <h2  id="name">EXPOSYS DATA LABS</h2>
+    </nav>
+
+    <div class="bg">
+            <h2 id="head">MASS MAIL DISPATCHER</h2>
+       <fieldset>
+        <div class="mailinfo">
+            <form method="post">
+                <h2 id="box-heading"> WRITE YOUR MAIL HERE</h2>
+                <p>
+                    From : * <br>
+                    <input type="email" id="senderEmail" placeholder="From (Email id / username)" required></P>
+                </p>
+
+                <p> Choose the file * <br>
+                    <label for="csvFile" id="csv">CSV File:</label>
+                    <input type="file" id="csvFile" name="csvFile" accept=".csv" required>
+                             <p>
+                    Subject : * <br>
+                    <p><textarea  id="subject" cols="12" rows="11" placeholder="write subject" required></textarea></p>
+                 </p>
+
+                 <p>
+                    Compose email : * <br>
+                    <p><textarea  id="message" cols="12" rows="11" placeholder="body" required></textarea></p>
+                 </p>
+                <input type="button" value="Send Emails" style="font-weight: bold;" onclick="sendEmails()">
+                <hr>      
+            </form>     
+        </div>
+       </fieldset>
+
+       <fieldset >
+        <div style="display:flex" >
+          <div>
+              <p style="color: #14181b;">Valid Emails: <span id="validEmailCount"></span></p>
+              <div id="validEmails" style="float: left"></div>
+          </div>
+          <div style="margin-left: 15px">
+              <p style="color: #090d0f;">Invalid Emails: <span id="invalidEmailCount"></span></p>
+              <div id="invalidEmails" style="float: left"></div>
+          </div>
+      </div>
+       </fieldset>
+
+    </div >
+    <hr>
+    
+    <footer>
+      <div class="footercontainer">
+        <div class="socialicons">
+          <a href=""><i class="fa-brands fa-facebook"></i></a>
+          <a href=""><i class="fa-brands fa-instagram"></i></a>
+          <a href=""><i class="fa-brands fa-twitter"></i></a>
+          <a href=""><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <div class="footernavs">
+          <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Sbout</a></li>
+            <li><a href="">News</a></li>
+            <li><a href="">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footerbutton">
+        <p>Copywrite ;2023; Designed by <span class="designer">R pavansai</span></p>
+      </div>
+    </footer>
+
+<script type="text/javascript">
+  (function(){
+emailjs.init("kl92GOzXqMSIr4VBt"); 
+})();
+function sendEmails() {
+var senderEmail = document.getElementById("senderEmail").value;
+var message = document.getElementById("message").value;
+var subject = document.getElementById("subject").value;
+
+var validEmails = [];
+var invalidEmails = [];
+
+// Read contents of CSV file
+var file = document.getElementById("csvFile").files[0];
+var reader = new FileReader();
+reader.readAsText(file);
+reader.onload = function(event) {
+  var csv = event.target.result;
+  var lines = csv.split('\n');
+  for (var i = 0; i < lines.length; i++) {
+    var email = lines[i].trim();
+    var emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$/
+;
+    if (emailRegex.test(email)) {
+      validEmails.push(email);
+    } else {
+      invalidEmails.push(email);
+    }
+  }
+
+ 
+
+  // Send email to valid email addresses
+  for (var j = 0; j < validEmails.length; j++) {
+    var templateParams = {
+      to_name: validEmails[j],
+      from_name: senderEmail,
+      message_html: message,
+      subject_html: subject
+    };  
+
+    emailjs.send('service_s52ku0c', 'template_bt00hm9', templateParams)
+      .then(function(response) {
+        console.log("SUCCESS", response);
+      }, function(error) {
+        console.log("FAILED", error);
+      });
+  }
+
+  alert("Emails sent to valid email addresses.");
+};
+}
+
+/*Thinking*/
+var TxtRotate = function(el, toRotate, period) {
+this.toRotate = toRotate;
+this.el = el;
+this.loopNum = 0;
+this.period = parseInt(period, 1) || 1000;
+this.txt = '';
+this.tick();
+this.isDeleting = false;
+};
+
+TxtRotate.prototype.tick = function() {
+var i = this.loopNum % this.toRotate.length;
+var fullTxt = this.toRotate[i];
+
+if (this.isDeleting) {
+this.txt = fullTxt.substring(0, this.txt.length - 1);
+} else {
+this.txt = fullTxt.substring(0, this.txt.length + 1);
+}
+
+this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+var that = this;
+var delta = 300 - Math.random() * 100;
+
+if (this.isDeleting) { delta /= 2; }
+
+if (!this.isDeleting && this.txt === fullTxt) {
+delta = this.period;
+this.isDeleting = true;
+} else if (this.isDeleting && this.txt === '') {
+this.isDeleting = false;
+this.loopNum++;
+delta = 500;
+}
+
+setTimeout(function() {
+that.tick();
+}, delta);
+};
+
+window.onload = function() {
+var elements = document.getElementsByClassName('txt-rotate');
+for (var i=0; i<elements.length; i++) {
+var toRotate = elements[i].getAttribute('data-rotate');
+var period = elements[i].getAttribute('data-period');
+if (toRotate) {
+new TxtRotate(elements[i], JSON.parse(toRotate), period);
+}
+}
+// INJECT CSS
+var css = document.createElement("style");
+css.type = "text/css";
+css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+document.body.appendChild(css);
+};
+</script>
+
+<script type="text/javascript">
+  document.getElementById("csvFile").addEventListener("change", function() {
+var validEmails = [];
+var invalidEmails = [];
+
+// Read contents of CSV file
+var file = document.getElementById("csvFile").files[0];
+var reader = new FileReader();
+reader.readAsText(file);
+reader.onload = function(event) {
+  var csv = event.target.result;
+  var lines = csv.split('\n');
+  for (var i = 0; i < lines.length; i++) {
+    var email = lines[i].trim();
+    var emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$/
+;
+    if (emailRegex.test(email)) {
+      validEmails.push(email);
+    } else {
+      invalidEmails.push(email);
+    }
+  }
+ 
+  // Display valid and invalid emails
+  document.getElementById("validEmails").innerHTML = validEmails.join("<br><br>");
+  document.getElementById("invalidEmails").innerHTML = invalidEmails.join("<br><br>");
+  document.getElementById("validEmailCount").innerText = "(" + validEmails.length + ")";
+  document.getElementById("invalidEmailCount").innerText = "(" + invalidEmails.length + ")";
+};
+});
+
+</script>   
+</body>
+</html>
