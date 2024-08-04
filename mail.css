@@ -1,0 +1,120 @@
+body {
+  font-family: 'Raleway', sans-serif;
+  background-color: #ce2727;
+  margin: 0;
+  padding: 0;
+}
+
+#nav {
+  background-color: #2b6cb1;
+  color: #5e6787;
+  padding: 15px 0;
+  text-align: center;
+}
+
+#name {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#head {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+#box-heading {
+  font-size: 1.25em;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+textarea.form-control {
+  resize: none;
+}
+
+footer {
+  background-color: #007bff;
+  color: #fff;
+  padding: 20px 0;
+  margin-top: 20px;
+}
+
+.footercontainer {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.socialicons i {
+  margin: 0 10px;
+  color: #fff;
+  transition: color 0.3s;
+}
+
+.socialicons i:hover {
+  color: #d4d4d4;
+}
+
+.footernavs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footernavs ul li {
+  display: inline;
+  margin: 0 10px;
+}
+
+.footernavs ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footernavs ul li a:hover {
+  color: #d4d4d4;
+}
+
+.footerbutton {
+  text-align: center;
+  color: #d4d4d4;
+}
+
+.footerbutton p {
+  margin: 0;
+}
+
+.footerbutton .designer {
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Custom styles for email lists */
+#validEmails, #invalidEmails {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
