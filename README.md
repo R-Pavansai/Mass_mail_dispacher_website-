@@ -1,3 +1,4 @@
+Project Link : http://127.0.0.1:5500/Mass%20mail%20dispacher/project%20code/mail.html
 # Mass_mail_dispacher_website-
 This is a website based on mass mail dispatcher .This will sends bulk emails at once ,using this we can send hundreds of mails at a time without any mistake 
 This repository contains the source code and documentation for the Mass Mail Dispatcher project. The Mass Mail Dispatcher is a tool designed to simplify the process of sending bulk emails to a large number of recipients. It provides a user-friendly interface to compose emails, manage recipient lists, and schedule email dispatches.
