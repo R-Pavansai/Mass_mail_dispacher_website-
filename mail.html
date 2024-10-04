@@ -12,9 +12,32 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#" id="name">EXPOSYS DATA LABS</a>
-    </nav>
+    </nav> -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html">Mass Mail Dispatcher</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+               <li class="nav-item">
+                  <a class="nav-link" href="mail.html">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="about.html">About</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="news.html">News</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+              
+          </ul>
+      </div>
+  </nav>
 
     <div class="container mt-5">
         <h2 class="text-center" id="head">MASS MAIL DISPATCHER</h2>
@@ -77,10 +100,10 @@
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
                     <h5 class="text-uppercase">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-dark">Home</a></li>
-                        <li><a href="#" class="text-dark">About</a></li>
-                        <li><a href="#" class="text-dark">News</a></li>
-                        <li><a href="#" class="text-dark">Contact</a></li>
+                        <li><a href="mail.html" class="text-dark">Home</a></li>
+                        <li><a href="About.html" class="text-dark">About</a></li>
+                        <li><a href="news.html" class="text-dark">News</a></li>
+                        <li><a href="contact.html" class="text-dark">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -96,7 +119,7 @@
 
 <script type="text/javascript">
   (function(){
-emailjs.init("kl92GOzXqMSIr4VBt"); 
+emailjs.init("C6uEL_UradwgLNqPR"); 
 })();
 function sendEmails() {
 var senderEmail = document.getElementById("senderEmail").value;
@@ -132,7 +155,7 @@ reader.onload = function(event) {
       subject_html: subject
     };  
 
-    emailjs.send('service_s52ku0c', 'template_bt00hm9', templateParams)
+    emailjs.send('service_cn13spk', 'template_bt00hm9', templateParams)
       .then(function(response) {
         console.log("SUCCESS", response);
       }, function(error) {
